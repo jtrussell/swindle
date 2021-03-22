@@ -1,0 +1,28 @@
+{% extends "page.html" %}
+
+{% block content %}
+<h1>{{leaderboard.name}} Leaderboard</h1>
+
+<a href="{% url 'show_leaderboard_group' leaderboard.group.slug %}">Back to list</a>
+
+<h2>todo...</h2>
+<ul>
+  <li>Champion</li>
+  <li>Champion's deck</li>
+</ul>
+
+<h2>Open Challenges</h2>
+<a href="{% url 'show_leaderboard_challenge_form' leaderboard.slug %}">Submit a challenge</a>
+
+<ul>
+  <li><em>todo - challenger #1 with deck</em></li>
+  <li><em>todo - challenger #2 with deck</em></li>
+</ul>
+
+<h2>Hall of Fame</h2>
+<em>todo</em>
+
+<h2>Match History</h2>
+<p><em>todo - most recent 5-ish results</em></p>
+<a href="{% url 'show_leaderboard_history' leaderboard.slug %}">See all.</a>
+{% endblock %}

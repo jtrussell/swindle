@@ -1,0 +1,38 @@
+{% load static %}
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <title>{%block head_title %}Leaderboards{% endblock %}</title>
+  <meta name="description" content="KeyForge leaderboards">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!--
+  <link rel="icon" type="image/svg+xml" href="{% static 'img/favicon-5.0.svg' %}">
+  -->
+
+  <link href='https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css' rel='stylesheet' type='text/css'>
+  
+  {% block extra_head %}
+    <!-- Custom head content -->
+  {% endblock %}
+</head>
+
+<body class="preload">
+  {% block body %}
+  <!--[if IE]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+  <![endif]-->
+
+  <!-- Add your site or application content here -->
+  <main role="main" class="container">
+    {% block content %}
+      <!-- Silence is golden -->
+    {% endblock %}
+  </main>
+
+  {% endblock %}
+</body>
+
+</html>

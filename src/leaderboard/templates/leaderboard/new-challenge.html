@@ -1,0 +1,10 @@
+
+{% extends "page.html" %}
+
+{% block content %}
+  <h1>Challenge {{leaderboard.name}}</h1>
+
+  <a href="{% url 'show_leaderboard' leaderboard.slug %}">Back to board</a>
+
+  <p><em>todo</em></p>
+{% endblock %}
