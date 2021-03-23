@@ -2,27 +2,42 @@
 
 {% block content %}
 <h1>{{leaderboard.name}} Leaderboard</h1>
-
 <a href="{% url 'show_leaderboard_group' leaderboard.group.slug %}">Back to list</a>
 
-<h2>todo...</h2>
-<ul>
-  <li>Champion</li>
-  <li>Champion's deck</li>
-</ul>
+<h2>🎉 The Champion 🎉</h2>
+<p>
+  The current champion is <a href="#">Awesome Archon</a>, piloting <a
+  href="https://decksofkeyforge.com/decks/06eb8f0b-c7a8-4f92-a312-628c5357c75c">Rotheloe
+  “Khan Tunes” Unter</a>. Watch out! They're on a hot streak.
+</p>
 
 <h2>Open Challenges</h2>
-<a href="{% url 'show_leaderboard_challenge_form' leaderboard.slug %}">Submit a challenge</a>
 
-<ul>
-  <li><em>todo - challenger #1 with deck</em></li>
-  <li><em>todo - challenger #2 with deck</em></li>
-</ul>
+<ol>
+  <li>
+    <a href="#">Hapless Cadet</a> is waiting for battle. Look out, they've got a <a href="https://decksofkeyforge.com/decks/186312e3-fef2-45ed-a338-0c2faff054ea">Beaker Violet Helpilion</a>!
+  </li>
+  <li>
+    <a href="#">Smooth Forger</a> means business and they're packing some <a href="https://decksofkeyforge.com/decks/bd415ec2-ebf3-478e-8164-1c18bc29ed20">Witch Ameer</a>.
+  </li>
+</ol>
+
+<p>
+  <a href="{% url 'show_leaderboard_challenge_form' leaderboard.slug %}">Submit a challenge</a>
+</p>
 
 <h2>Hall of Fame</h2>
-<em>todo</em>
+<p>With 37 challenges rebuffed, <a href="#">Awesome Archon</a> has the
+longest winning streak. They've also got 54 lifetime wins on this board... wowza!</p>
 
 <h2>Match History</h2>
-<p><em>todo - most recent 5-ish results</em></p>
+<ul>
+  <li>
+    <a href="#">Match #522</a> wherein <a href="#">Awesome Archon</a> dispatched <a href="#">Evil villain</a>
+  </li>
+  <li>
+    <a href="#">Match #521</a> wherein <a href="#">Awesome Archon</a> narrowly avoided destruction at the hands of <a href="#">Eager Challenger</a>
+  </li>
+</ul>
 <a href="{% url 'show_leaderboard_history' leaderboard.slug %}">See all.</a>
 {% endblock %}

@@ -6,5 +6,10 @@
 
   <a href="{% url 'show_leaderboard' leaderboard.slug %}">Back to board</a>
 
-  <p><em>todo</em></p>
+  <form>
+    <label for="deck_dok">Deck link (DoK)</label>
+    <input class="u-full-width" id="deck_dok" type="text" />
+
+    <input class="button-primary" type="submit" value="Submit">
+  </form>
 {% endblock %}
