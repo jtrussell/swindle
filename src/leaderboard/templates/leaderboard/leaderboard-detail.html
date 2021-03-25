@@ -14,12 +14,11 @@
 <h2>Open Challenges</h2>
 
 <ol>
-  <li>
-    <a href="#">Hapless Cadet</a> is waiting for battle. Look out, they've got a <a href="https://decksofkeyforge.com/decks/186312e3-fef2-45ed-a338-0c2faff054ea">Beaker Violet Helpilion</a>!
-  </li>
-  <li>
-    <a href="#">Smooth Forger</a> means business and they're packing some <a href="https://decksofkeyforge.com/decks/bd415ec2-ebf3-478e-8164-1c18bc29ed20">Witch Ameer</a>.
-  </li>
+  {% for challenge in leaderboard.challenges.all %}
+    <li>
+      <a href="#">{{challenge.created_by}}</a> is waiting for battle. Look out, they've got a <a href="{{challenge.created_by.decks.first.get_dok_url}}">{{challenge.created_by.decks.first}}</a>!
+    </li>
+  {% endfor %}
 </ol>
 
 <p>

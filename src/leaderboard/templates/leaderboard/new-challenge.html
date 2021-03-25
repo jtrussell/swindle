@@ -6,10 +6,11 @@
 
   <a href="{% url 'show_leaderboard' leaderboard.slug %}">Back to board</a>
 
-  <form>
-    <label for="deck_dok">Deck link (DoK)</label>
-    <input class="u-full-width" id="deck_dok" type="text" />
-
-    <input class="button-primary" type="submit" value="Submit">
+  <form method="POST">
+    {% csrf_token %}
+    {{ form }}
+    <button class="button-primary" type="submit">
+      Submit challenge
+    </button>
   </form>
 {% endblock %}

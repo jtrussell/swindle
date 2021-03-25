@@ -8,7 +8,7 @@ from .models import LeaderboardGroup
 
 
 class ChallengeAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('created_by', 'leaderboard', 'created_on')
 
 
 class CompetitorAdmin(admin.ModelAdmin):
@@ -16,11 +16,11 @@ class CompetitorAdmin(admin.ModelAdmin):
 
 
 class CompetitorDeckAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('deck', 'sas', 'competitor')
 
 
 class DeckAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('name', 'mv_id')
 
 
 class LeaderboardAdmin(admin.ModelAdmin):
