@@ -17,6 +17,7 @@
   {% for challenge in leaderboard.challenges.all %}
     <li>
       <a href="#">{{challenge.created_by}}</a> is waiting for battle. Look out, they've got a <a href="{{challenge.created_by.decks.first.get_dok_url}}">{{challenge.created_by.decks.first}}</a>!
+      <a href="{{challenge.get_absolute_url}}">Details.</a>
     </li>
   {% endfor %}
 </ol>

@@ -12,7 +12,7 @@ urlpatterns = [
     path('board/<slug:leaderboard_slug>/new-challenge',
          views.new_challenge, name='show_leaderboard_challenge_form'),
     path('board/<slug:leaderboard_slug>/challenge/<int:challenge_id>',
-         views.challenge_detail),
+         views.challenge_detail, name='show_challenge'),
     path('board/<slug:leaderboard_slug>/result/<int:result_id>',
          views.result_detail, name='show_leaderboard_results'),
 ]

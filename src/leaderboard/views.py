@@ -76,14 +76,17 @@ def new_challenge(request, leaderboard_slug):
     else:
         form = LeaderboardChallengeForm()
 
-    return render(request, 'leaderboard/new-challenge.html', {
+    return render(request, 'leaderboard/challenge-new.html', {
         'leaderboard': board,
         'form': form,
     })
 
 
 def challenge_detail(request, leaderboard_slug, challenge_id):
-    return render(request, 'leaderboard/index.html')
+    board = Leaderboard.objects.filter(slug=leaderboard_slug).first()
+    return render(request, 'leaderboard/challenge-detail.html', {
+        'leaderboard': board
+    })
 
 
 def result_detail(request, leaderboard_slug, result_id):

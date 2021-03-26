@@ -23,6 +23,7 @@ class Leaderboard(models.Model):
         'Competitor', on_delete=models.CASCADE, null=True, default=None, blank=True, related_name='+')
     champion_since = models.ForeignKey(
         'Result', on_delete=models.CASCADE, null=True, default=None, blank=True, related_name='+')
+    champion_winning_streak = models.IntegerField(default=0)
 
     def __str__(self):
         return self.name
@@ -80,6 +81,14 @@ class Challenge(models.Model):
 
     class Meta:
         ordering = ['created_on']
+
+    def get_absolute_url(self):
+        return reverse(
+            'show_challenge',
+            kwargs={
+                'leaderboard_slug': self.leaderboard.slug,
+                'challenge_id': self.id
+            })
 
 
 RESULT_STATUES = (
