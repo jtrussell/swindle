@@ -114,6 +114,9 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
+# Project artifacts
+/static_build
+
 ### Editor Junk ###
 *.swp
 *.code-workspace
