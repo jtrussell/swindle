@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponseNotFound
+from django.views.decorators.http import require_POST
+from django.contrib.auth.decorators import login_required
 from .models import Challenge
 from .models import Competitor
 from .models import CompetitorDeck
@@ -88,20 +90,17 @@ def challenge_detail(request, leaderboard_slug, challenge_id):
     })
 
 
+@require_POST
+@login_required
 def submit_result(request):
-    if request.method == 'POST':
-        form = ResultForm(request.POST)
-        # TODO validate user is allowed to submit this result!
-        if form.is_valid():
+    form = ResultForm(request.POST)
+    if form.is_valid():
+        challenge = form.cleaned_data.challenge
+        allow_submit = challenge.is_user_allowed_to_submit_results(request.user)
+        if allow_submit:
             result = form.save()
             return redirect(result)
-        else:
-            print('Form is not valid')
-            # TODO shouldn't ever happen... but redirect somewhere better
-            print(form.errors)
-            return HttpResponseNotFound()
-    else:
-        return HttpResponseNotFound()
+    return HttpResponseNotFound()
 
 
 def result_list(request, leaderboard_slug):

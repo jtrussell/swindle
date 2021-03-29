@@ -90,6 +90,17 @@ class Challenge(models.Model):
                 'challenge_id': self.id
             })
 
+    def is_user_allowed_to_submit_results(self, user):
+        # TODO - add a permission for admins to enter any results
+        if user == self.created_by.user:
+            return True
+        try:
+            if user == self.leaderboard.champion.user:
+                return True
+        except AttributeError:
+            pass
+        return False
+
 
 class Result(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
