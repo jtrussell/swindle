@@ -1,11 +1,13 @@
 from django.shortcuts import render, redirect
+from django.http import HttpResponseNotFound
 from .models import Challenge
 from .models import Competitor
 from .models import CompetitorDeck
 from .models import Deck
 from .models import Leaderboard
 from .models import LeaderboardGroup
-from .forms import LeaderboardChallengeForm
+from .models import Result
+from .forms import LeaderboardChallengeForm, ResultForm, get_result_form_for_challenge
 
 
 # Create your views here.
@@ -24,13 +26,6 @@ def leaderboard_group(request, group_slug):
 def leaderboard_detail(request, leaderboard_slug):
     board = Leaderboard.objects.filter(slug=leaderboard_slug).first()
     return render(request, 'leaderboard/leaderboard-detail.html', {
-        'leaderboard': board,
-    })
-
-
-def leaderboard_history(request, leaderboard_slug):
-    board = Leaderboard.objects.filter(slug=leaderboard_slug).first()
-    return render(request, 'leaderboard/leaderboard-history.html', {
         'leaderboard': board,
     })
 
@@ -84,10 +79,40 @@ def new_challenge(request, leaderboard_slug):
 
 def challenge_detail(request, leaderboard_slug, challenge_id):
     board = Leaderboard.objects.filter(slug=leaderboard_slug).first()
+    challenge = Challenge.objects.get(id=challenge_id)
+    form = get_result_form_for_challenge(challenge)
     return render(request, 'leaderboard/challenge-detail.html', {
-        'leaderboard': board
+        'leaderboard': board,
+        'challenge': challenge,
+        'form': form,
+    })
+
+
+def submit_result(request):
+    if request.method == 'POST':
+        form = ResultForm(request.POST)
+        # TODO validate user is allowed to submit this result!
+        if form.is_valid():
+            result = form.save()
+            return redirect(result)
+        else:
+            print('Form is not valid')
+            # TODO shouldn't ever happen... but redirect somewhere better
+            print(form.errors)
+            return HttpResponseNotFound()
+    else:
+        return HttpResponseNotFound()
+
+
+def result_list(request, leaderboard_slug):
+    board = Leaderboard.objects.filter(slug=leaderboard_slug).first()
+    return render(request, 'leaderboard/result-list.html', {
+        'leaderboard': board,
     })
 
 
 def result_detail(request, leaderboard_slug, result_id):
-    return render(request, 'leaderboard/index.html')
+    result = Result.objects.get(id=result_id)
+    return render(request, 'leaderboard/result-detail.html', {
+        'result': result,
+    })

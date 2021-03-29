@@ -1,1 +1,8 @@
-/* Silence is golden */
+:root {
+  --color-muted: #ccc;
+}
+
+.swindle-meta {
+  text-align: right;
+  color: var(--color-muted);
+}

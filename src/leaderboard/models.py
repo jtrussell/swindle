@@ -57,7 +57,7 @@ class Competitor(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.user.get_full_name()
+        return '{} ({})'.format(self.user.get_full_name(), self.id)
 
 
 class CompetitorDeck(models.Model):
@@ -91,16 +91,20 @@ class Challenge(models.Model):
             })
 
 
-RESULT_STATUES = (
-    (0, "Completed"),
-    (1, "Archived"),
-)
-
-
 class Result(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     leaderboard = models.ForeignKey(Leaderboard, on_delete=models.CASCADE)
-    challenge = models.ForeignKey(
+    challenge = models.OneToOneField(
         Challenge, on_delete=models.CASCADE, null=True, blank=True)
-    defended_by = models.ForeignKey(Competitor, on_delete=models.CASCADE)
-    status = models.IntegerField(choices=RESULT_STATUES, default=0)
+    defended_by = models.ForeignKey(
+        Competitor, on_delete=models.CASCADE, related_name='result_defenses')
+    winner = models.ForeignKey(
+        Competitor, on_delete=models.CASCADE, related_name='result_wins')
+
+    def get_absolute_url(self):
+        return reverse(
+            'show_result',
+            kwargs={
+                'leaderboard_slug': self.leaderboard.slug,
+                'result_id': self.id
+            })

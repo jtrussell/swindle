@@ -1,14 +1,18 @@
 {% extends "page.html" %}
 
 {% block content %}
-  <h1>{{leaderboard_group.name}} Leaderboards</h1>
+<h1>{{leaderboard_group.name}} Leaderboards</h1>
 
-  <ol>
-    {% for board in leaderboard_group.leaderboards.all %}
-    <li>
-      <a href="{% url 'show_leaderboard' board.slug %}">{{board.name}}</a>
-        <em>Champion</em> / <em>Deck</em> / <em>Winning streak</em>
-    </li>
-    {% endfor %}
-  </ol>
+<ol>
+  {% for board in leaderboard_group.leaderboards.all %}
+  <li>
+    <a href="{% url 'show_leaderboard' board.slug %}">{{board.name}}</a>
+      <em>Champion</em> / <em>Deck</em> / <em>Winning streak</em>
+  </li>
+  {% endfor %}
+</ol>
+{% endblock %}
+
+{% block meta %}
+Leaderboard group {{leaderboard_group.id}}
 {% endblock %}

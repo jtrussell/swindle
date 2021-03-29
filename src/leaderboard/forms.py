@@ -1,7 +1,7 @@
 from django import forms
 from django.utils.translation import gettext_lazy as _
 from django.core.exceptions import ValidationError
-from .models import Deck
+from .models import Deck, Result, Competitor
 import uuid
 
 
@@ -36,3 +36,36 @@ class LeaderboardChallengeForm(forms.Form):
         widget=forms.NumberInput(attrs={
             'class': 'u-full-width',
         }))
+
+
+def get_result_form_for_challenge(challenge):
+    competitor_ids = [challenge.created_by.id]
+    if challenge.leaderboard.champion is not None:
+        competitor_ids.append(challenge.leaderboard.champion.id)
+
+    class ChallengeResultForm(forms.ModelForm):
+        winner = forms.ModelChoiceField(
+            Competitor.objects.filter(id__in=competitor_ids),
+            widget=forms.RadioSelect
+        )
+
+        class Meta:
+            model = Result
+            fields = ('winner', 'leaderboard', 'challenge', 'defended_by')
+            widgets = {
+                'leaderboard': forms.HiddenInput(),
+                'challenge': forms.HiddenInput(),
+                'defended_by': forms.HiddenInput(),
+            }
+    return ChallengeResultForm(initial={
+        'leaderboard': challenge.leaderboard,
+        'challenge': challenge,
+        'defended_by': challenge.leaderboard.champion,
+    })
+
+
+class ResultForm(forms.ModelForm):
+
+    class Meta:
+        model = Result
+        fields = ('winner', 'leaderboard', 'challenge', 'defended_by')

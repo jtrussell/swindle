@@ -2,7 +2,7 @@
 
 {% block content %}
 <h1>{{leaderboard.name}} Leaderboard</h1>
-<a href="{% url 'show_leaderboard_group' leaderboard.group.slug %}">Back to list</a>
+<a href="{% url 'show_group' leaderboard.group.slug %}">Back to list</a>
 
 <h2>🎉 The Champion 🎉</h2>
 <p>
@@ -23,7 +23,7 @@
 </ol>
 
 <p>
-  <a href="{% url 'show_leaderboard_challenge_form' leaderboard.slug %}">Submit a challenge</a>
+  <a href="{% url 'show_challenge_form' leaderboard.slug %}">Submit a challenge</a>
 </p>
 
 <h2>Hall of Fame</h2>
@@ -39,5 +39,9 @@ longest winning streak. They've also got 54 lifetime wins on this board... wowza
     <a href="#">Match #521</a> wherein <a href="#">Awesome Archon</a> narrowly avoided destruction at the hands of <a href="#">Eager Challenger</a>
   </li>
 </ul>
-<a href="{% url 'show_leaderboard_history' leaderboard.slug %}">See all.</a>
+<a href="{% url 'show_results' leaderboard.slug %}">See all.</a>
+{% endblock %}
+
+{% block meta %}
+Leaderboard {{leaderboard.id}}
 {% endblock %}

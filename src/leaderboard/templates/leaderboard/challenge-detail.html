@@ -5,7 +5,19 @@
 <a href="{% url 'show_leaderboard' leaderboard.slug %}">Back to {{leaderboard.name}}</a>
 
 <p>
-TODO - Enter a result
+  {{challenge.created_by}} is challenging this board with {{challenge.created_by.decks.first}}!
 </p>
 
+<h2>Report Results</h2>
+<form action="{% url 'submit_result' %}" method="POST">
+  {% csrf_token %}
+  {{form}}
+  <button type="submit">
+    Submit
+  </button>
+</form>
+{% endblock %}
+
+{% block meta %}
+Challenge {{challenge.id}}
 {% endblock %}

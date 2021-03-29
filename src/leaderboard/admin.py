@@ -5,6 +5,7 @@ from .models import CompetitorDeck
 from .models import Deck
 from .models import Leaderboard
 from .models import LeaderboardGroup
+from .models import Result
 
 
 class ChallengeAdmin(admin.ModelAdmin):
@@ -33,9 +34,14 @@ class LeaderboardGroupAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name',), }
 
 
+class ResultAdmin(admin.ModelAdmin):
+    pass
+
+
 admin.site.register(Challenge, ChallengeAdmin)
 admin.site.register(Competitor, CompetitorAdmin)
 admin.site.register(CompetitorDeck, CompetitorDeckAdmin)
 admin.site.register(Deck, DeckAdmin)
 admin.site.register(Leaderboard, LeaderboardAdmin)
 admin.site.register(LeaderboardGroup, LeaderboardGroupAdmin)
+admin.site.register(Result, ResultAdmin)

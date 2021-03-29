@@ -1,0 +1,12 @@
+{% extends "page.html" %}
+
+{% block content %}
+  <h1>Hello, World</h1>
+
+  <a href="{% url 'show_leaderboard' result.leaderboard.slug %}">Back to board</a>
+
+{% endblock %}
+
+{% block meta %}
+Result {{result.id}}
+{% endblock %}
