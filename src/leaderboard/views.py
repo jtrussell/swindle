@@ -104,10 +104,19 @@ def submit_result(request):
     form = ResultForm(request.POST)
     if form.is_valid():
         challenge = form.cleaned_data.challenge
-        allow_submit = challenge.is_user_allowed_to_submit_results(request.user)
+        allow_submit = challenge.is_user_allowed_to_submit_results(
+            request.user)
         if allow_submit:
             result = form.save()
-            # TODO - Update stats on board
+            winner = result.winner
+            board = result.leaderboard
+            if winner == board.champion:
+                board.champion_winning_streak = board.champion_winning_streak + 1
+            else:
+                board.champion = winner
+                board.champion_since = result
+                board.board.champion_winning_streak = 1
+            board.save()
             return redirect(result)
     return HttpResponseNotFound()
 
@@ -124,4 +133,3 @@ def result_detail(request, leaderboard_slug, result_id):
     return render(request, 'leaderboard/result-detail.html', {
         'result': result,
     })
-    
