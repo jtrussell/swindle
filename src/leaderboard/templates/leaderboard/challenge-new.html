@@ -2,15 +2,24 @@
 {% extends "page.html" %}
 
 {% block content %}
-  <h1>Challenge {{leaderboard.name}}</h1>
+  {% if leaderboard.champion %}
+    <h1>Challenge {{leaderboard.name}}</h1>
+  {% else %}
+    <h1>Claim {{leaderboard.name}}</h1>
+  {% endif %}
 
-  <a href="{% url 'show_leaderboard' leaderboard.slug %}">Back to board</a>
+  <a class="nav-back" href="{% url 'show_leaderboard' leaderboard.slug %}">Back to board</a>
 
   <form method="POST">
     {% csrf_token %}
     {{ form }}
     <button class="button-primary" type="submit">
-      Submit challenge
+      {% if leaderboard.champion %}
+        Submit challenge
+      {% else %}
+        I am the champion
+      {% endif %}
+      
     </button>
   </form>
 {% endblock %}

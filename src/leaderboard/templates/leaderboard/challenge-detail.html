@@ -2,7 +2,8 @@
 
 {% block content %}
 <h1>Challenge Detail</h1>
-<a href="{% url 'show_leaderboard' leaderboard.slug %}">Back to {{leaderboard.name}}</a>
+
+<a class="nav-back" href="{% url 'show_leaderboard' leaderboard.slug %}">Back to {{leaderboard.name}}</a>
 
 <p>
   {{challenge.created_by}} is challenging this board with {{challenge.created_by.decks.first}}!

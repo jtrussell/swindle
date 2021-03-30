@@ -27,8 +27,10 @@ def leaderboard_group(request, group_slug):
 
 def leaderboard_detail(request, leaderboard_slug):
     board = Leaderboard.objects.filter(slug=leaderboard_slug).first()
+    form = LeaderboardChallengeForm()
     return render(request, 'leaderboard/leaderboard-detail.html', {
         'leaderboard': board,
+        'form': form,
     })
 
 
@@ -39,6 +41,7 @@ def new_challenge(request, leaderboard_slug):
         if form.is_valid():
             mv_id = Deck.get_mv_id_from_url(form.cleaned_data['deck_url'])
             # TODO - get SAS and deck name from DoK
+            # Also, update the "submit_claim" handler
             deck_sas = form.cleaned_data['deck_sas']
             deck_name = form.cleaned_data['deck_name']
 
@@ -61,13 +64,18 @@ def new_challenge(request, leaderboard_slug):
                 sas=deck_sas
             )
 
-            # Create challenge
-            challenge = Challenge.objects.create(
-                created_by=competitor,
-                leaderboard=board
-            )
+            # Create challenge or claim this board
+            if board.champion:
+                challenge = Challenge.objects.create(
+                    created_by=competitor,
+                    leaderboard=board
+                )
+            else:
+                board.champion = competitor
+                board.champion_since = None
+                board.champion_winning_streak = 0
+                board.save()
 
-            # TODO - redirect to the challenge (gotta have pages for challenges fist ;))
             return redirect(board)
 
     else:
@@ -99,6 +107,7 @@ def submit_result(request):
         allow_submit = challenge.is_user_allowed_to_submit_results(request.user)
         if allow_submit:
             result = form.save()
+            # TODO - Update stats on board
             return redirect(result)
     return HttpResponseNotFound()
 
@@ -115,3 +124,4 @@ def result_detail(request, leaderboard_slug, result_id):
     return render(request, 'leaderboard/result-detail.html', {
         'result': result,
     })
+    

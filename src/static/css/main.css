@@ -2,7 +2,12 @@
   --color-muted: #ccc;
 }
 
-.swindle-meta {
+a.nav-back:before {
+  content: "\2190";
+  padding-right: 2px;
+}
+
+.meta {
   text-align: right;
   color: var(--color-muted);
 }
