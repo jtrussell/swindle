@@ -17,6 +17,10 @@
     </div>
     {% endif %}
   </li>
+  {% empty %}
+  <li class="empty">
+    There's nothing here! Maybe you should bug a moderator.
+  </li>
   {% endfor %}
 </ol>
 {% endblock %}

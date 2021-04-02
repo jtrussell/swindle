@@ -1,0 +1,27 @@
+{% extends "page.html" %}
+
+{% block content %}
+<div class="row">
+  <div class="three columns">&nbsp;</div>
+  <div class="six columns">
+    <h1>Sign Up</h1>
+    {% if user_form.errors %}
+    {{ user_form.errors }}
+    {% endif %}
+
+    {% if profile_form.errors %}
+    {{ profile_form.errors }}
+    {% endif %}
+
+    <form method="post" action="{% url 'show_sign_up_form' %}">
+      {% csrf_token %}
+      {{ user_form }}
+      {{ profile_form }}
+      <a class="button button-primary" href="{% url 'show_sign_up_form' %}">
+        Let's go!
+      </a>
+    </form>
+  </div>
+  <div class="three columns">&nbsp;</div>
+</div>
+{% endblock %}

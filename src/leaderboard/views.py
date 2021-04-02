@@ -16,6 +16,12 @@ from .forms import LeaderboardChallengeForm, ResultForm, get_result_form_for_cha
 def index(request):
     return render(request, 'leaderboard/index.html')
 
+def leaderboard_groups(request):
+    groups = LeaderboardGroup.objects.all()
+    return render(request, 'leaderboard/leaderboard-groups.html', {
+        'leaderboard_groups': groups,
+    })
+
 
 def leaderboard_group(request, group_slug):
     group = LeaderboardGroup.objects.filter(

@@ -1,0 +1,17 @@
+{% extends "page.html" %}
+
+{% block content %}
+<h1>All Leaderboards</h1>
+
+<ol class="leaderboards-list">
+  {% for group in leaderboard_groups %}
+  <li>
+    <a href="{% url 'show_group' group.slug %}">{{group.name}}</a>
+  </li>
+  {% empty %}
+  <li class="empty">
+    There's nothing here! Maybe you should bug a moderator.
+  </li>
+  {% endfor %}
+</ol>
+{% endblock %}

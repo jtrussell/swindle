@@ -1,5 +1,7 @@
 :root {
   --color-muted: #ccc;
+  --color-sw-green: #84fb3e;
+  --color-sw-purple: #8048c5;
 }
 
 a.nav-back:before {
@@ -7,7 +9,25 @@ a.nav-back:before {
   padding-right: 2px;
 }
 
+.empty {
+  color: var(--color-muted);
+  list-style-type: none;
+}
+
 .meta {
   text-align: right;
   color: var(--color-muted);
+}
+
+
+/**
+ * Overrides for Django fixtures
+ */
+
+ /* Help text is used with form controls, e.g. when you have username or
+  * password requirements */
+.helptext {
+  color: var(--color-muted);
+  position: relative;
+  top: -10px;
 }

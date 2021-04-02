@@ -2,7 +2,8 @@ from . import views
 from django.urls import path
 
 
-urlpatterns = [
+urlpatterns = [     
+    path('boards/', views.leaderboard_groups, name='show_groups'),
     path('boards/<slug:group_slug>/', views.leaderboard_group,
          name='show_group'),
     path('board/<slug:leaderboard_slug>/',
