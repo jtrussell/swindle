@@ -19,6 +19,26 @@ a.nav-back:before {
   color: var(--color-muted);
 }
 
+/**
+ * Top Nav
+ */
+ul.top-nav {
+  display: flex;
+  flex-direction: row;
+  list-style-type: none;
+}
+
+/**
+ * Utilities
+ */
+
+.flex-spacer {
+  flex-grow: 1;
+}
+
+.text-muted {
+  color: var(--color-muted);
+}
 
 /**
  * Overrides for Django fixtures

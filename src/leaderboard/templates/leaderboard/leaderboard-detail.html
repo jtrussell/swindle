@@ -14,14 +14,14 @@
 {% if leaderboard.champion %}
   <h2>The Champion</h2>
   <div>
-    The current champion is {{leaderboard.champion}}, piloting <a href="{{leaderboard.champion.decks.first.get_dok_url}}">{{leaderboard.champion.decks.first}}</a>. Watch out! They're on a hot streak.
+    The current champion is {{leaderboard.champion.html}}, piloting <a href="{{leaderboard.champion.decks.first.get_dok_url}}">{{leaderboard.champion.decks.first}}</a>. Watch out! They're on a hot streak.
   </div>
 
   <h2>Open Challenges</h2>
   <ol>
     {% for challenge in leaderboard.challenges.all %}
     <li>
-      <a href="#">{{challenge.created_by}}</a> is waiting for battle. Look out, they've got a <a href="{{challenge.created_by.decks.first.get_dok_url}}">{{challenge.created_by.decks.first}}</a>!
+      {{challenge.created_by.html}} is waiting for battle. Look out, they've got a <a href="{{challenge.created_by.decks.first.get_dok_url}}">{{challenge.created_by.decks.first}}</a>!
       <a href="{{challenge.get_absolute_url}}">Details.</a>
     </li>
     {% endfor %}
@@ -31,18 +31,13 @@
     <a href="{% url 'show_challenge_form' leaderboard.slug %}">Submit a challenge</a>
   </p>
 
-  <h2>Hall of Fame</h2>
-  <p>With 37 challenges rebuffed, <a href="#">Awesome Archon</a> has the
-  longest winning streak. They've also got 54 lifetime wins on this board... wowza!</p>
-
   <h2>Match History</h2>
   <ul>
+    {% for result in leaderboard.last_five_results %}
     <li>
-      <a href="#">Match #522</a> wherein <a href="#">Awesome Archon</a> dispatched <a href="#">Evil villain</a>
+      {{result.html}} defended by {{result.defended_by.html}}
     </li>
-    <li>
-      <a href="#">Match #521</a> wherein <a href="#">Awesome Archon</a> narrowly avoided destruction at the hands of <a href="#">Eager Challenger</a>
-    </li>
+    {% endfor %}
   </ul>
   <a href="{% url 'show_results' leaderboard.slug %}">See all.</a>
 {% endif %}

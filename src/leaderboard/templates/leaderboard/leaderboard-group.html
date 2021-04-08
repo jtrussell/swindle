@@ -9,7 +9,7 @@
     <a href="{% url 'show_leaderboard' board.slug %}">{{board.name}}</a>
     {% if board.champion %}
     <div class="leaderboards-list__leaderboard-stats">
-        {{board.champion}} has {{board.champion_winning_streak}} wins with {{board.champion.decks.first}}.
+        {{board.champion.html}} has {{board.champion_winning_streak}} wins with {{board.champion.decks.first}}
     </div>
     {% else %}
     <div class="leaderboards-list__leaderboard-stats--empty">

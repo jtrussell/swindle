@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
+from django.utils.safestring import mark_safe
 
 
 class LeaderboardGroup(models.Model):
@@ -31,6 +32,9 @@ class Leaderboard(models.Model):
     def get_absolute_url(self):
         return reverse('show_leaderboard', kwargs={'leaderboard_slug': self.slug})
 
+    def last_five_results(self):
+        return Result.objects.filter(leaderboard=self)[:5]
+
     class Meta:
         ordering = ['sort_order']
 
@@ -58,6 +62,9 @@ class Competitor(models.Model):
 
     def __str__(self):
         return '{} ({})'.format(self.user.get_full_name(), self.id)
+
+    def html(self):
+        return mark_safe('<span class="competitor">{} <span class="text-muted">#{}</span></span>'.format(self.user.get_full_name(), self.id))
 
 
 class CompetitorDeck(models.Model):
@@ -111,6 +118,12 @@ class Result(models.Model):
         Competitor, on_delete=models.CASCADE, related_name='result_defenses')
     winner = models.ForeignKey(
         Competitor, on_delete=models.CASCADE, related_name='result_wins')
+
+    def __str__(self):
+        return 'Match #{}'.format(self.id)
+
+    def html(self):
+        return mark_safe('<span class="result">Match <span class="text-muted">#{}</span></span>'.format(self.id))
 
     def get_absolute_url(self):
         return reverse(

@@ -26,13 +26,14 @@
     <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
   <![endif]-->
 
-  <nav role="navigation" class="container">
-    <ul>
+  <nav role="navigation">
+    <ul class="container top-nav">
       <li>
         <a href="{% url 'show_groups' %}">
           Leaderboards
         </a>
       </li>
+      <li class="flex-spacer"></li>
       <li>
         {% if user.is_authenticated %}
         <a href="/accounts/profile">Profile</a>
