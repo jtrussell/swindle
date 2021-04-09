@@ -5,9 +5,13 @@
 
   <a class="nav-back" href="{% url 'show_leaderboard' leaderboard.slug %}">Back to board</a>
 
-  <p>
-    TODO - all the matches!
-  </p>
+  <ul>
+    {% for result in leaderboard.results.all %}
+    <li>
+      {{result.html}} defended by {{result.defended_by.html}}
+    </li>
+    {% endfor %}
+  </ul>
 {% endblock %}
 
 {% block meta %}

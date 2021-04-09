@@ -111,7 +111,8 @@ class Challenge(models.Model):
 
 class Result(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
-    leaderboard = models.ForeignKey(Leaderboard, on_delete=models.CASCADE)
+    leaderboard = models.ForeignKey(
+        Leaderboard, on_delete=models.CASCADE, related_name='results')
     challenge = models.OneToOneField(
         Challenge, on_delete=models.CASCADE, null=True, blank=True)
     defended_by = models.ForeignKey(
