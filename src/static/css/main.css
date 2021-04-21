@@ -2,21 +2,7 @@
   --color-muted: #ccc;
   --color-sw-green: #84fb3e;
   --color-sw-purple: #8048c5;
-}
-
-a.nav-back:before {
-  content: "\2190";
-  padding-right: 2px;
-}
-
-.empty {
-  color: var(--color-muted);
-  list-style-type: none;
-}
-
-.meta {
-  text-align: right;
-  color: var(--color-muted);
+  --color-sw-purple-darker: #552b8a;
 }
 
 /**
@@ -36,10 +22,6 @@ ul.top-nav {
   flex-grow: 1;
 }
 
-.text-muted {
-  color: var(--color-muted);
-}
-
 /**
  * Overrides for Django fixtures
  */
@@ -50,4 +32,35 @@ ul.top-nav {
   color: var(--color-muted);
   position: relative;
   top: -10px;
+}
+
+/**
+ * Theme
+ */
+a.nav-back:before {
+  content: "\2190";
+  padding-right: 2px;
+}
+
+.empty {
+  color: var(--color-muted);
+  list-style-type: none;
+}
+
+.meta {
+  text-align: right;
+  color: var(--color-muted);
+}
+a {
+  color: var(--color-sw-purple);
+}
+
+a:hover,
+a:focus,
+a:active {
+  color: var(--color-sw-purple-darker)
+}
+
+.text-muted {
+  color: var(--color-muted);
 }

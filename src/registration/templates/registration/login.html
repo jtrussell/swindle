@@ -4,6 +4,7 @@
 <div class="row">
   <div class="three columns">&nbsp;</div>
   <div class="six columns">
+    <h1>Sign In</h1>
     {% if form.errors %}
     <p>Your username and password didn't match. Please try again.</p>
     {% endif %}
@@ -31,7 +32,7 @@
     </form>
 
     {# Assumes you setup the password_reset view in your URLconf #}
-    <p><a href="{% url 'password_reset' %}">Reset password</a></p>
+    <p><a href="{% url 'password_reset' %}">Forgot your password?</a></p>
   </div>
   <div class="three columns">&nbsp;</div>
 </div>
