@@ -16,6 +16,7 @@ from .forms import LeaderboardChallengeForm, ResultForm, get_result_form_for_cha
 def index(request):
     return render(request, 'leaderboard/index.html')
 
+
 def leaderboard_groups(request):
     groups = LeaderboardGroup.objects.all()
     return render(request, 'leaderboard/leaderboard-groups.html', {
@@ -40,6 +41,7 @@ def leaderboard_detail(request, leaderboard_slug):
     })
 
 
+@login_required
 def new_challenge(request, leaderboard_slug):
     board = Leaderboard.objects.filter(slug=leaderboard_slug).first()
     if request.method == 'POST':
