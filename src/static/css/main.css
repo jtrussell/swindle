@@ -3,6 +3,8 @@
   --color-sw-green: #84fb3e;
   --color-sw-purple: #8048c5;
   --color-sw-purple-darker: #552b8a;
+  --color-bg: #fff;
+  --color-text: #333;
 }
 
 /**
@@ -37,6 +39,15 @@ ul.top-nav {
 /**
  * Theme
  */
+html {
+  background-color: var(--color-bg);
+}
+
+body {
+  font-family: Ubuntu, Raleway,HelveticaNeue,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  color: var(--color-text);
+}
+
 a.nav-back:before {
   content: "\2190";
   padding-right: 2px;
