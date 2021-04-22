@@ -1,16 +1,18 @@
 {% extends "page.html" %}
 
 {% block content %}
-<a href="{% url 'logout' %}">Log out</a>
-
+<h1>Your Profile</h1>
+<p>Welcome, {{user.username}}!</p>
 <p>
-TODO - let folks update their info:
+  <a href="{% url 'logout' %}" class="button">Log out</a>
 </p>
 
-<ul>
-  <li>discord?</li>
-  <li>email? get emailed when you've got a new challenge!</li>
-  <li>style your name on the leaderboard?</li>
-</ul>
+<h2>Your Deets</h2>
+<form method="POST">
+  {% csrf_token %}
+  {{ user_form }}
+  {{ profile_form }}
+  <input type="submit" value="Make it so">
+</form>
 
 {% endblock %}
