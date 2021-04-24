@@ -1,0 +1,11 @@
+.leaderboards-list {
+  list-style-type: none;
+}
+
+.leaderboards-list__item {
+  display: flex;
+}
+
+.leaderboards-list__board-name {
+  font-size: 3rem;
+}

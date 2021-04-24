@@ -13,11 +13,11 @@
   -->
 
   <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
   <link href='https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="{% static 'css/main.css' %}">
   
-  {% block extra_head %}
+  {% block head_extra %}
     <!-- Custom head content -->
   {% endblock %}
 </head>
@@ -30,12 +30,12 @@
 
   <nav role="navigation">
     <ul class="container top-nav">
+      <li class="flex-spacer"></li>
       <li>
         <a href="{% url 'show_groups' %}">
           Leaderboards
         </a>
       </li>
-      <li class="flex-spacer"></li>
       <li>
         {% if user.is_authenticated %}
         <a href="/accounts/profile">Profile</a>
@@ -59,7 +59,12 @@
     {% endblock %}
   </div>
 
-  {% endblock %}
+    {% endblock %}
+    <script>
+      setTimeout(function () {
+        document.querySelector('body').classList.remove('preload')
+      })
+  </script>
 </body>
 
 </html>

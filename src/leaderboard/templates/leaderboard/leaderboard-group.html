@@ -1,12 +1,17 @@
 {% extends "page.html" %}
+{% load static %}
+
+{% block head_extra %}
+<link rel="stylesheet" href="{% static 'leaderboard/leaderboard-group.css' %}">
+{% endblock %}
 
 {% block content %}
 <h1>{{leaderboard_group.name}} Leaderboards</h1>
 
 <ol class="leaderboards-list">
   {% for board in leaderboard_group.leaderboards.all %}
-  <li>
-    <a href="{% url 'show_leaderboard' board.slug %}">{{board.name}}</a>
+  <li class="leaderboard-list__item">
+    <a class="leaderboards-list__board-name" href="{% url 'show_leaderboard' board.slug %}">{{board.name}}</a>
     {% if board.champion %}
     <div class="leaderboards-list__leaderboard-stats">
         {{board.champion.html}} has {{board.champion_winning_streak}} wins with {{board.champion.decks.first}}

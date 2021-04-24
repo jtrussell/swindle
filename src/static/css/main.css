@@ -7,6 +7,11 @@
   --color-text: #333;
 }
 
+body, html {
+  padding: 0;
+  margin: 0;
+}
+
 /**
  * Top Nav
  */
@@ -14,6 +19,11 @@ ul.top-nav {
   display: flex;
   flex-direction: row;
   list-style-type: none;
+  font-weight: 300;
+}
+
+ul.top-nav > li:not(:first-child) {
+  margin-left: 20px;
 }
 
 /**
@@ -48,6 +58,12 @@ body {
   color: var(--color-text);
 }
 
+body * {
+  transition: all 0.5s ease-in-out;
+  transition-property: background-color, color, border-color;
+}
+body.preload * { transition: none !important; }
+
 a.nav-back:before {
   content: "\2190";
   padding-right: 2px;
@@ -74,4 +90,27 @@ a:active {
 
 .text-muted {
   color: var(--color-muted);
+}
+
+.button.button-primary,
+button.button-primary,
+input[type="submit"].button-primary,
+input[type="reset"].button-primary,
+input[type="button"].button-primary {
+  background-color: var(--color-sw-purple);
+  border-color: var(--color-sw-purple-darker)
+}
+
+.button.button-primary:hover,
+button.button-primary:hover,
+input[type="submit"].button-primary:hover,
+input[type="reset"].button-primary:hover,
+input[type="button"].button-primary:hover,
+.button.button-primary:focus,
+button.button-primary:focus,
+input[type="submit"].button-primary:focus,
+input[type="reset"].button-primary:focus,
+input[type="button"].button-primary:focus {
+  background-color: var(--color-sw-purple-darker);
+  border-color: var(--color-sw-purple-darker)
 }

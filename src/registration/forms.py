@@ -4,6 +4,7 @@ from .models import UserProfile
 
 
 class NewUserForm(forms.ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput())
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['username'].widget.attrs.update({'class': 'u-full-width'})
