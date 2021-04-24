@@ -26,8 +26,8 @@
       {{ form.password.label_tag }}
       <input id="id_password" class="u-full-width" name="password" type="password">
 
-      <input type="submit" value="login">
-      <a href="{% url 'show_sign_up_form' %}">Sign up</a>
+      <input type="submit" class="button-primary" value="login">
+      <a class="button" href="{% url 'show_sign_up_form' %}">Sign up</a>
       <input type="hidden" name="next" value="{{ next }}">
     </form>
 

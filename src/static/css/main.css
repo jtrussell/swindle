@@ -3,6 +3,7 @@
   --color-sw-green: #84fb3e;
   --color-sw-purple: #8048c5;
   --color-sw-purple-darker: #552b8a;
+  --color-danger: tomato;
   --color-bg: #fff;
   --color-text: #333;
 }
@@ -90,6 +91,10 @@ a:active {
 
 .text-muted {
   color: var(--color-muted);
+}
+
+.text-danger {
+  color: var(--color-danger);
 }
 
 .button.button-primary,
