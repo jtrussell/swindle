@@ -115,6 +115,7 @@ dmypy.json
 .pyre/
 
 # Project artifacts
+.env
 /static_build
 
 ### Editor Junk ###
