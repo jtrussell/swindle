@@ -21,10 +21,56 @@ ul.top-nav {
   flex-direction: row;
   list-style-type: none;
   font-weight: 300;
+  height: 4rem;
 }
 
-ul.top-nav > li:not(:first-child) {
-  margin-left: 20px;
+ul.top-nav li {
+  padding: 0;
+  margin: 0 0 0 20px;
+  display: flex;
+  align-items: center;
+}
+
+ul.top-nav li a {
+  text-decoration: none;
+}
+
+ul.top-nav > li:first-child {
+  margin-left: none;
+}
+
+/**
+ * Masthead
+ */
+#masthead h1 {
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (min-width: 550px) {
+  #masthead h1 {
+    max-width: none;
+    margin-left: none;
+    margin-right: none;
+    font-size: 7rem;
+    background-color: var(--color-sw-purple-darker);
+    color: var(--color-bg);
+    padding: 7rem;
+    text-align: center;
+    background:
+      linear-gradient(135deg, var(--color-sw-purple-darker) 21px, var(--color-sw-purple) 22px, var(--color-sw-purple) 24px, transparent 24px, transparent 67px, var(--color-sw-purple) 67px, var(--color-sw-purple) 69px, transparent 69px),
+      linear-gradient(225deg, var(--color-sw-purple-darker) 21px, var(--color-sw-purple) 22px, var(--color-sw-purple) 24px, transparent 24px, transparent 67px, var(--color-sw-purple) 67px, var(--color-sw-purple) 69px, transparent 69px)0 64px;
+    background-color:var(--color-sw-purple-darker);
+    background-size: 64px 128px;
+    text-shadow: 0px 0px 2px var(--color-sw-green);
+  }
+}
+
+@media (max-width: 550px) {
+  #masthead h1 {
+    width: 85%;;
+  }
 }
 
 /**

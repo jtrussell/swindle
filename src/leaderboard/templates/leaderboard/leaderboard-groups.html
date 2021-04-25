@@ -1,8 +1,11 @@
 {% extends "page.html" %}
 
-{% block content %}
-<h1>All Leaderboards</h1>
+{% block masthead %}
+<h1>Leaderboards</h1>
+{% endblock %}
 
+{% block content %}
+<h2>Leaderboard Groups</h2>
 <ol class="leaderboards-list">
   {% for group in leaderboard_groups %}
   <li>

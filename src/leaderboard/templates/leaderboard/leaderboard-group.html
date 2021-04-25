@@ -5,9 +5,11 @@
 <link rel="stylesheet" href="{% static 'leaderboard/leaderboard-group.css' %}">
 {% endblock %}
 
-{% block content %}
+{% block masthead %}
 <h1>{{leaderboard_group.name}} Leaderboards</h1>
+{% endblock %}
 
+{% block content %}
 <ol class="leaderboards-list">
   {% for board in leaderboard_group.leaderboards.all %}
   <li class="leaderboard-list__item">
