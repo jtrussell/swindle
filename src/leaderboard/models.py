@@ -65,10 +65,16 @@ class Competitor(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return '{} ({})'.format(self.user.get_full_name(), self.id)
+        return '{} ({})'.format(self.user.username, self.id)
 
     def html(self):
-        return mark_safe('<span class="competitor">{} <span class="text-muted">#{}</span></span>'.format(self.user.get_full_name(), self.id))
+        name = self.user.username
+        color = self.user.profile.display_color
+        discriminator = self.id
+        style = ''
+        if color:
+            style = 'color: {}'.format(color)
+        return mark_safe('<span class="competitor" style="{}">{} <span class="text-muted">#{}</span></span>'.format(style, name, discriminator))
 
 
 class CompetitorDeck(models.Model):

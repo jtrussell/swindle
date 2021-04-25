@@ -10,6 +10,8 @@ class UserProfile(models.Model):
     user = models.OneToOneField(
         User, on_delete=models.CASCADE, related_name='profile')
     discord_handle = models.CharField(max_length=100, unique=True, null=True)
+    display_color = models.CharField(
+        max_length=20, null=True, blank=True, default=None)
 
     def get_absolute_url(self):
         return reverse('profile')
