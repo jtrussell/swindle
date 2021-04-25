@@ -5,6 +5,7 @@ from django.utils.safestring import mark_safe
 
 
 class LeaderboardGroup(models.Model):
+    id = models.AutoField(primary_key=True)
     slug = models.SlugField(unique=True)
     name = models.CharField(max_length=20, unique=True)
     description = models.CharField(max_length=200)
@@ -14,6 +15,7 @@ class LeaderboardGroup(models.Model):
 
 
 class Leaderboard(models.Model):
+    id = models.AutoField(primary_key=True)
     slug = models.SlugField(unique=True)
     name = models.CharField(max_length=20, unique=True)
     description = models.CharField(max_length=200)
@@ -40,6 +42,7 @@ class Leaderboard(models.Model):
 
 
 class Deck(models.Model):
+    id = models.AutoField(primary_key=True)
     mv_id = models.UUIDField(unique=True)
     name = models.CharField(max_length=200)
 
@@ -55,6 +58,7 @@ class Deck(models.Model):
 
 
 class Competitor(models.Model):
+    id = models.AutoField(primary_key=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     leaderboard = models.ForeignKey(
         Leaderboard, on_delete=models.CASCADE)
@@ -68,6 +72,7 @@ class Competitor(models.Model):
 
 
 class CompetitorDeck(models.Model):
+    id = models.AutoField(primary_key=True)
     competitor = models.ForeignKey(
         Competitor, on_delete=models.CASCADE, related_name='decks')
     deck = models.ForeignKey(Deck, on_delete=models.CASCADE)
@@ -81,6 +86,7 @@ class CompetitorDeck(models.Model):
 
 
 class Challenge(models.Model):
+    id = models.AutoField(primary_key=True)
     created_on = models.DateTimeField(auto_now_add=True)
     created_by = models.ForeignKey(Competitor, on_delete=models.CASCADE)
     leaderboard = models.ForeignKey(
@@ -110,6 +116,7 @@ class Challenge(models.Model):
 
 
 class Result(models.Model):
+    id = models.AutoField(primary_key=True)
     created_on = models.DateTimeField(auto_now_add=True)
     leaderboard = models.ForeignKey(
         Leaderboard, on_delete=models.CASCADE, related_name='results')
