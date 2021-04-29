@@ -99,9 +99,11 @@ def challenge_detail(request, leaderboard_slug, challenge_id):
     board = Leaderboard.objects.filter(slug=leaderboard_slug).first()
     challenge = Challenge.objects.get(id=challenge_id)
     form = get_result_form_for_challenge(challenge)
+    show_form = challenge.is_user_allowed_to_submit_results(request.user)
     return render(request, 'leaderboard/challenge-detail.html', {
         'leaderboard': board,
         'challenge': challenge,
+        'show_form': show_form,
         'form': form,
     })
 

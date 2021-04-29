@@ -93,6 +93,10 @@ ul.top-nav > li:first-child {
   top: -10px;
 }
 
+.result-form ul {
+  list-style-type: none;
+}
+
 /**
  * Theme
  */

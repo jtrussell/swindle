@@ -9,14 +9,17 @@
   {{challenge.created_by}} is challenging this board with {{challenge.created_by.decks.first}}!
 </p>
 
-<h2>Report Results</h2>
-<form action="{% url 'submit_result' %}" method="POST">
-  {% csrf_token %}
-  {{form}}
-  <button type="submit">
-    Submit
-  </button>
-</form>
+{% if show_form %}
+  <h2>Report Results</h2>
+  <form action="{% url 'submit_result' %}" method="POST" class="result-form">
+    {% csrf_token %}
+    {{form}}
+    <button type="submit">
+      Submit
+    </button>
+  </form>
+{% endif %}
+
 {% endblock %}
 
 {% block meta %}
