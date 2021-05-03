@@ -35,6 +35,10 @@ http {
 		server_name _;
 		keepalive_timeout 5;
 
+    location /static/ {
+      root /app/src/static_build/
+    }
+
 		location / {
 			if ($http_x_forwarded_proto != "https") {
 			  return 301 https://$host$request_uri;
