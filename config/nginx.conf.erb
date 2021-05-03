@@ -36,7 +36,9 @@ http {
 		keepalive_timeout 5;
 
     location /static/ {
-      root /app/src/static_build/;
+      alias /app/src/static_build/;
+      gzip_static on;
+      add_header Cache-Control public;
     }
 
 		location / {
