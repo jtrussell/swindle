@@ -1,6 +1,7 @@
 {% extends "page.html" %}
 
 {% block content %}
+<div class="container">
   <h1>{{leaderboard.name}} Match History</h1>
 
   <a class="nav-back" href="{% url 'show_leaderboard' leaderboard.slug %}">Back to board</a>
@@ -12,8 +13,11 @@
     </li>
     {% endfor %}
   </ul>
+</div>
 {% endblock %}
 
 {% block meta %}
-History for leaderboard {{leaderboard.id}}
+<div class="container">
+  History for leaderboard {{leaderboard.id}}
+</div>
 {% endblock %}

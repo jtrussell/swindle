@@ -10,28 +10,32 @@
 {% endblock %}
 
 {% block content %}
-<ol class="leaderboards-list">
-  {% for board in leaderboard_group.leaderboards.all %}
-  <li class="leaderboard-list__item">
-    <a class="leaderboards-list__board-name" href="{% url 'show_leaderboard' board.slug %}">{{board.name}}</a>
-    {% if board.champion %}
-    <div class="leaderboards-list__leaderboard-stats">
-        {{board.champion.html}} has {{board.champion_winning_streak}} wins with {{board.champion.decks.first}}
-    </div>
-    {% else %}
-    <div class="leaderboards-list__leaderboard-stats--empty">
-        This board needs a champion
-    </div>
-    {% endif %}
-  </li>
-  {% empty %}
-  <li class="empty">
-    There's nothing here! Maybe you should bug a moderator.
-  </li>
-  {% endfor %}
-</ol>
+<div class="container">
+  <ol class="leaderboards-list">
+    {% for board in leaderboard_group.leaderboards.all %}
+    <li class="leaderboard-list__item">
+      <a class="leaderboards-list__board-name" href="{% url 'show_leaderboard' board.slug %}">{{board.name}}</a>
+      {% if board.champion %}
+      <div class="leaderboards-list__leaderboard-stats">
+          {{board.champion.html}} has {{board.champion_winning_streak}} wins with {{board.champion.decks.first}}
+      </div>
+      {% else %}
+      <div class="leaderboards-list__leaderboard-stats--empty">
+          This board needs a champion
+      </div>
+      {% endif %}
+    </li>
+    {% empty %}
+    <li class="empty">
+      There's nothing here! Maybe you should bug a moderator.
+    </li>
+    {% endfor %}
+  </ol>
+</div>
 {% endblock %}
 
 {% block meta %}
-Leaderboard group {{leaderboard_group.id}}
+<div class="container">
+  Leaderboard group {{leaderboard_group.id}}
+</div>
 {% endblock %}

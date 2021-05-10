@@ -1,39 +1,41 @@
 {% extends "page.html" %}
 
 {% block content %}
-<div class="row">
-  <div class="three columns">&nbsp;</div>
-  <div class="six columns">
-    <h1>Sign In</h1>
-    {% if form.errors %}
-    <p>Your username and password didn't match. Please try again.</p>
-    {% endif %}
-
-    {% if next %}
-      {% if user.is_authenticated %}
-      <p>Your account doesn't have access to this page. To proceed,
-      please login with an account that has access.</p>
-      {% else %}
-      <p>Please login to see this page.</p>
+<div class="container">
+  <div class="row">
+    <div class="three columns">&nbsp;</div>
+    <div class="six columns">
+      <h1>Sign In</h1>
+      {% if form.errors %}
+      <p>Your username and password didn't match. Please try again.</p>
       {% endif %}
-    {% endif %}
 
-    <form method="post" action="{% url 'login' %}">
-      {% csrf_token %}
-      {{ form.username.label_tag }}
-      <input id="id_username" class="u-full-width" name="username" type="text">
+      {% if next %}
+        {% if user.is_authenticated %}
+        <p>Your account doesn't have access to this page. To proceed,
+        please login with an account that has access.</p>
+        {% else %}
+        <p>Please login to see this page.</p>
+        {% endif %}
+      {% endif %}
 
-      {{ form.password.label_tag }}
-      <input id="id_password" class="u-full-width" name="password" type="password">
+      <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        {{ form.username.label_tag }}
+        <input id="id_username" class="u-full-width" name="username" type="text">
 
-      <input type="submit" class="button-primary" value="login">
-      <a class="button" href="{% url 'show_sign_up_form' %}">Sign up</a>
-      <input type="hidden" name="next" value="{{ next }}">
-    </form>
+        {{ form.password.label_tag }}
+        <input id="id_password" class="u-full-width" name="password" type="password">
 
-    {# Assumes you setup the password_reset view in your URLconf #}
-    <p><a href="{% url 'password_reset' %}">Forgot your password?</a></p>
+        <input type="submit" class="button-primary" value="login">
+        <a class="button" href="{% url 'show_sign_up_form' %}">Sign up</a>
+        <input type="hidden" name="next" value="{{ next }}">
+      </form>
+
+      {# Assumes you setup the password_reset view in your URLconf #}
+      <p><a href="{% url 'password_reset' %}">Forgot your password?</a></p>
+    </div>
+    <div class="three columns">&nbsp;</div>
   </div>
-  <div class="three columns">&nbsp;</div>
 </div>
 {% endblock %}

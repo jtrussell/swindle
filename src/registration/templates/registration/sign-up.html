@@ -1,27 +1,29 @@
 {% extends "page.html" %}
 
 {% block content %}
-<div class="row">
-  <div class="three columns">&nbsp;</div>
-  <div class="six columns">
-    <h1>Sign Up</h1>
+<div class="container">
+  <div class="row">
+    <div class="three columns">&nbsp;</div>
+    <div class="six columns">
+      <h1>Sign Up</h1>
 
-    {% if user_form.errors %}
-      {{ user_form.errors }}
-    {% else %}
-      {% if profile_form.errors %}
-        {{ profile_form.errors }}
+      {% if user_form.errors %}
+        {{ user_form.errors }}
+      {% else %}
+        {% if profile_form.errors %}
+          {{ profile_form.errors }}
+        {% endif %}
       {% endif %}
-    {% endif %}
 
 
-    <form method="POST">
-      {% csrf_token %}
-      {{ user_form }}
-      {{ profile_form }}
-      <input type="submit" class="button-primary" value="Let's go!">
-    </form>
+      <form method="POST">
+        {% csrf_token %}
+        {{ user_form }}
+        {{ profile_form }}
+        <input type="submit" class="button-primary" value="Let's go!">
+      </form>
+    </div>
+    <div class="three columns">&nbsp;</div>
   </div>
-  <div class="three columns">&nbsp;</div>
 </div>
 {% endblock %}

@@ -1,7 +1,7 @@
-
 {% extends "page.html" %}
 
 {% block content %}
+<div class="container">
   {% if leaderboard.champion %}
     <h1>Challenge {{leaderboard.name}}</h1>
   {% else %}
@@ -22,4 +22,5 @@
       
     </button>
   </form>
+</div>
 {% endblock %}

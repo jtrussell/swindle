@@ -1,27 +1,30 @@
 {% extends "page.html" %}
 
 {% block content %}
-<h1>Challenge Detail</h1>
+<div class="container">
+  <h1>Challenge Detail</h1>
 
-<a class="nav-back" href="{% url 'show_leaderboard' leaderboard.slug %}">Back to {{leaderboard.name}}</a>
+  <a class="nav-back" href="{% url 'show_leaderboard' leaderboard.slug %}">Back to {{leaderboard.name}}</a>
 
-<p>
-  {{challenge.created_by}} is challenging this board with {{challenge.created_by.decks.first}}!
-</p>
+  <p>
+    {{challenge.created_by}} is challenging this board with {{challenge.created_by.decks.first}}!
+  </p>
 
-{% if show_form %}
-  <h2>Report Results</h2>
-  <form action="{% url 'submit_result' %}" method="POST" class="result-form">
-    {% csrf_token %}
-    {{form}}
-    <button type="submit">
-      Submit
-    </button>
-  </form>
-{% endif %}
-
+  {% if show_form %}
+    <h2>Report Results</h2>
+    <form action="{% url 'submit_result' %}" method="POST" class="result-form">
+      {% csrf_token %}
+      {{form}}
+      <button type="submit">
+        Submit
+      </button>
+    </form>
+  {% endif %}
+</div>
 {% endblock %}
 
 {% block meta %}
-Challenge {{challenge.id}}
+<div class="container">
+  Challenge {{challenge.id}}
+</div>
 {% endblock %}

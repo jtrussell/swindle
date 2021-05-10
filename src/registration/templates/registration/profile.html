@@ -1,18 +1,19 @@
 {% extends "page.html" %}
 
 {% block content %}
-<h1>Your Profile</h1>
-<p>Welcome, {{user.username}}! This is your profile. Make yourself at home.</p>
-<p>
-  <a href="{% url 'logout' %}" class="button">Log out</a>
-</p>
+<div class="container">
+  <h1>Your Profile</h1>
+  <p>Welcome, {{user.username}}! This is your profile. Make yourself at home.</p>
+  <p>
+    <a href="{% url 'logout' %}" class="button">Log out</a>
+  </p>
 
-<h2>Your Deets</h2>
-<form method="POST">
-  {% csrf_token %}
-  {{ user_form }}
-  {{ profile_form }}
-  <input type="submit" value="Make it so">
-</form>
-
+  <h2>Your Deets</h2>
+  <form method="POST">
+    {% csrf_token %}
+    {{ user_form }}
+    {{ profile_form }}
+    <input type="submit" value="Make it so">
+  </form>
+</div>
 {% endblock %}

@@ -1,12 +1,15 @@
 {% extends "page.html" %}
 
 {% block content %}
+<div class="container">
   <h1>Hello, World</h1>
 
   <a class="nav-back" href="{% url 'show_leaderboard' result.leaderboard.slug %}">Back to board</a>
-
+</div>
 {% endblock %}
 
 {% block meta %}
-Result {{result.id}}
+<div class="container">
+  Result {{result.id}}
+</div>
 {% endblock %}
